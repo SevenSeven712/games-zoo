@@ -90,8 +90,8 @@ const GAMES = [
       "外挂"
     ],
     "dl": {
-      "web": "https://dd.soft9527.com/ali213/Ake2V7wruRcskvYXHeK1Wg",
-      "pc": null,
+      "web": null,
+      "pc": "https://dd.soft9527.com/ali213/Ake2V7wruRcskvYXHeK1Wg",
       "android": "https://dd.soft9527.com/ali213/UxTmB7wmu0UskvUXFOO1Xg",
       "ios": null
     }
