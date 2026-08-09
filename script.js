@@ -1,4 +1,4 @@
-﻿// ===== ANTI-DEBUG =====
+// ===== ANTI-DEBUG =====
 document.addEventListener('contextmenu', e => e.preventDefault());
 document.addEventListener('keydown', e => {
     if (e.key === 'F12' || e.keyCode === 123) { e.preventDefault(); return false; }
@@ -48,7 +48,7 @@ const GAMES = [
       "update": "断更",
       "engine": "未知"
     },
-    "desc": "植物大战僵尸是一款经典塔防类手机游戏，丰富关卡不同地形各具特色，植物组合运用策略搭配，感兴趣的小伙伴快来下载植物大战僵尸体验吧。\n\n植物大战僵尸植物图鉴\n1、豌豆射手：\n\n豌豆射手是你的第一道防线，它们会向入侵的僵尸射击豌豆。\n\n伤害程度：普通；\n\n费用：100；\n\n恢复速度：快。\n\n\n\n2、向日葵：\n\n向日葵是收集额外阳光的关键植物。\n\n费用：50；\n\n恢复速度：快。\n\n\n\n3、樱桃炸弹：\n\n樱桃炸弹能够炸飞一片区域内的所有僵尸。\n\n由于引线很短，因此应将其种植在离僵尸较近的位置\n\n伤害程度：极大；\n\n作用范围：中型区域；\n\n用途：单次使用；\n\n费用：150；\n\n恢复速度：非常慢。\n\n\n\n4、高坚果：\n\n高建国拥有坚硬的外壳，可用于保护其他植物。\n\n费用：50；\n\n恢复速度：慢。\n\n\n\n5、土豆地雷：\n\n土豆地雷能对敌人造成致命一击，应将其种植在僵尸前方，以便在接触时引爆。\n\n伤害程度：极大；\n\n作用范围：小型区域；\n\n用途：单次使用，具有引爆延迟；\n\n费用：25；\n\n恢复速度：慢。\n\n\n\n6、食人花：\n\n食人花能够一口吞掉僵尸，但在咀嚼过程中容易受到攻击。\n\n伤害程度：极大；\n\n作用范围：极短；\n\n特点：咀嚼时间较长。\n\n\n\n7、小喷菇：\n\n小喷菇价格便宜，但射程较短，伤害程度普通。\n\n此外，它在白天会进入休眠状态。\n\n而夜晚小喷菇则能为你而战。\n\n用途：夜晚地图前期发育；\n\n特点：不需要阳光就可以种植；\n\n射程：短。\n\n\n\n植物大战僵尸最后一关怎么打\n邪恶的僵尸博士驾驶着他的巨型僵尸机器人来袭，意图消灭你这个大脑守护者。\n\n\n\n如图所示，当Boss吐出一个类似橘子口味棒棒糖的火球时，你可以使用冰镇蘑菇来消除它。\n\n其实，在Boss吐火球之前，它的眼睛会发出红光;而在吐冰球之前，眼睛则会发出蓝光。\n\n只需提前判断好，应对起来就没什么难度。\n\n\n\n冰镇蘑菇不仅能消除火球，还能暂时冰冻住Boss。\n\n因此，如果你的冰镇蘑菇数量充足，不妨在Boss探出头时多次使用它，以便让植物有更多机会攻击Boss。\n\n另外，胡椒也能对Boss造成伤害，但记得保留一些用来对付Boss吐出的冰球。\n\n\n\nBoss还会随机使用汽车来压扁你的植物。\n\n如果植物上方有花盆，记得及时补充到缺损的位置。\n\n只要及时补充花盆，你的火力基本上就不会受影响。\n\n\n\n坚持就是胜利。\n\n经过一番激战，博士的巨型僵尸机器人终于被打败了。\n\n看到小白旗了吗?此时，你还将获得向日葵奖杯，一周目就此结束。\n\n\n\n植物大战僵尸ios版介绍\n植物大战僵尸是由PopCap Games开发设计的一款益智类对策类单机手游。\n\n游戏玩家根据武装多种多样绿色植物转换不一样的作用，迅速合理地把丧尸阻拦在侵入的路面上。\n\n不一样的对手，不一样的游戏玩法组成五种不一样的游戏模式，加上夜晚、大雾及其泳游池这类的阻碍提升了游戏趣味性。\n\n\n\n植物大战僵尸ios版特色\n1、通过了解每种僵尸的弱点，去好好的布置每种植物之间的搭配方法。\n\n2、应有尽有的搭配玩法，默契配合的能力，每一种都有独特的属性。\n\n3、通过获取到的能量给植物去进行升级，通过升级来强化植物的攻击力。\n\n4、游戏中每次提升等级都能解锁新的植物，新的植物攻击更加高。\n\n\n\n植物大战僵尸怎么刷金币\n1、为了更快地赚取金币，大家可以选择《谁笑到最后》这个模式。\n\n\n\n2、开局时，建议保留200阳光，以备不时之需，比如防止蒜头或南瓜头被僵尸吃掉。\n\n\n\n3、过了第二波僵尸后，可以使用剩余的阳光替换掉受损的蒜头，并为南瓜头换上新的，以保持防御的完整性。\n\n\n\n4、到了第三波，记得给金盏花套上南瓜头，以防海豚僵尸的偷袭。\n\n5、在整个游戏过程中，要时刻留意阳光的数量，以便及时补充蒜头和南瓜头。\n\n只要策略得当，轻松过关不成问题，连续扛过五波僵尸，就能稳稳赚取金币。\n\n\n\n植物大战僵尸ios版亮点\n游戏中有46种不同植物，每种植物之间都有着不同的造型，同时在这里玩家需要布置合理的战术，去消灭前来攻击的家园的僵尸，充分了解僵尸的特征才能更好的打败僵尸。",
+    "desc": "植物大战僵尸是一款经典塔防类手机游戏，丰富关卡不同地形各具特色，植物组合运用策略搭配，感兴趣的小伙伴快来下载植物大战僵尸体验吧。",
     "tags": ["策略", "官方"],
     "dl": {
       "web": null,
@@ -90,9 +90,92 @@ const GAMES = [
       "外挂"
     ],
     "dl": {
-      "web": null,
-      "pc": "https://dd.soft9527.com/ali213/Ake2V7wruRcskvYXHeK1Wg",
+      "web": "https://dd.soft9527.com/ali213/Ake2V7wruRcskvYXHeK1Wg",
+      "pc": null,
       "android": "https://dd.soft9527.com/ali213/UxTmB7wmu0UskvUXFOO1Xg",
+      "ios": null
+    }
+  },
+
+  {
+    "id": 3,
+    "title": "足球经理人",
+    "devId": "seven",
+    "cat": "sim",
+    "icon": "https://i.ibb.co/SwHJpt9N/QQ20260804-155657.png",
+    "hero": "",
+    "shots": [
+      "https://i.ibb.co/n2qsM1M/QQ20260804-155946.png",
+      "https://i.ibb.co/RTPXtqpQ/QQ20260804-160005.png",
+      "https://i.ibb.co/Q7X0rT6y/QQ20260804-160019.png"
+    ],
+    "rating": 4.5,
+    "ratings": "5万",
+    "size": "10MB",
+    "hot": true,
+    "featured": 2,
+    "detail": {
+      "network": false,
+      "multiplayer": false,
+      "platform": "Web,Android,IOS,PC",
+      "controller": false,
+      "voice": true,
+      "cloud": false,
+      "age": "全年龄",
+      "lang": "中文",
+      "update": "不定时更新",
+      "engine": "HTML"
+    },
+    "desc": "足球经理人是Seven戚个人创作的真实模拟当教练和经理人的游戏。游戏为网页游戏，体积小，适配所有设备游玩\n主要玩法：\n• 购买转会球员\n• 炒作和吸粉\n• 建立自己的俱乐部\n• 带领队伍拿下超多奖项",
+    "tags": [
+      "策略",
+      "体育",
+      "足球",
+      "Seven戚"
+    ],
+    "dl": {
+      "web": "https://sevenseven712.github.io/QQ-football-game/",
+      "pc": "https://sevenseven712.github.io/QQ-football-game/",
+      "android": "https://sevenseven712.github.io/QQ-football-game/",
+      "ios": "https://sevenseven712.github.io/QQ-football-game/"
+    }
+  },
+  {
+    "id": 2,
+    "title": "三角洲行动国际服",
+    "devId": "seven",
+    "cat": "action",
+    "icon": "https://img.ddooo.com/logo/20250114/7996c01df10f1ecf22e732aed7ee233b.png",
+    "hero": "https://img.ddooo.com/uppic/20260806/db5c4b7ac82e341eb7d05dd6d6e66876.jpg",
+    "shots": [
+      "https://picsum.photos/seed/default/300/600"
+    ],
+    "rating": 3.9,
+    "ratings": "0",
+    "size": "1.32G",
+    "hot": true,
+    "featured": 1,
+    "detail": {
+      "network": false,
+      "multiplayer": true,
+      "platform": "Android",
+      "controller": false,
+      "voice": true,
+      "cloud": true,
+      "age": "16＋",
+      "lang": "多语言",
+      "update": "每周更新",
+      "engine": "虚幻4"
+    },
+    "desc": "三角洲行动国际服是腾讯旗下琳琅天上工作室打造的一款第一人称战术射击类手游，英文名叫Delta Force，其采用了最顶尖的物理引擎打造，游戏画面细腻精致，呈现出真实感十足的战场氛围，让玩家沉浸于引人入胜的游戏世界中。\n\n在三角洲行动游戏中玩家将化身特战干员，前往神秘的阿萨拉大陆调查哈夫克公司的非法活动。在这个充满危机的战场中，运用战斗道具与技能，与队友紧密协作，灵活制定战术，挑战强大的AI，完成各种极限行动。\n\n另外，三角洲行动游戏的玩法十分丰富，包括烽火地带、全面战场、黑鹰行动三大类，而全面战场模式下又有着多种玩法，如占领模式、攻防模式、危险行动等，前两种模式玩法分为进攻方和防守方，前者是占领敌方据点，后者则在一个地图中击败一切眼前敌人，击败它们获得分数，过程中玩家们可以合理利用各种战术道具、地形优势和沟通才是制胜的关键，有兴趣的朋友快来下载体验吧。",
+    "tags": [
+      "PVE",
+      "搜打撤"
+    ],
+    "dl": {
+      "web": null,
+      "pc": null,
+      "android": "https://api.ddooo.com/down/244973",
       "ios": null
     }
   },
@@ -186,6 +269,12 @@ function switchTab(tab, fromRoute = false) {
     updateTabBar();
     if (!fromRoute) updateURL(pageId, '');
     if (tab === 'category') renderCatGames();
+    // 切换tab时停止轮播（若离开首页）
+    if (tab !== 'home') clearInterval(carouselTimer);
+    else if (tab === 'home') {
+        const featured = GAMES.filter(g => g.featured).sort((a, b) => a.featured - b.featured);
+        if (featured.length > 1) startCarousel(featured.length);
+    }
 }
 
 // ===== 直接打开详情/贡献者/搜索 =====
@@ -199,6 +288,8 @@ function openDetailDirect(id) {
         if (home) home.classList.add('active');
         document.querySelectorAll('.tab-item').forEach(t => t.classList.toggle('active', t.dataset.t === 'home'));
         curTab = 'home';
+        // 停止轮播
+        clearInterval(carouselTimer);
     }
     renderDetail(id);
     const p = document.getElementById('pageDetail');
@@ -220,6 +311,7 @@ function openContribDirect(devId) {
         if (home) home.classList.add('active');
         document.querySelectorAll('.tab-item').forEach(t => t.classList.toggle('active', t.dataset.t === 'home'));
         curTab = 'home';
+        clearInterval(carouselTimer);
     }
     renderContrib(devId);
     const p = document.getElementById('pageContrib');
@@ -241,6 +333,7 @@ function openSearchDirect() {
         if (home) home.classList.add('active');
         document.querySelectorAll('.tab-item').forEach(t => t.classList.toggle('active', t.dataset.t === 'home'));
         curTab = 'home';
+        clearInterval(carouselTimer);
     }
     const p = document.getElementById('pageSearch');
     if (p) {
@@ -249,8 +342,11 @@ function openSearchDirect() {
         pageStack.push('pageSearch');
         updateTabBar();
         updateURL('pageSearch', '');
+        // 清空输入框和结果
+        const input = document.getElementById('searchInput');
+        if (input) input.value = '';
         document.getElementById('searchResults').innerHTML = `<div class="empty-state"><div class="em-icon">🔍</div><div class="em-text">输入关键词搜索游戏或开发者</div></div>`;
-        setTimeout(() => document.getElementById('searchInput').focus(), 400);
+        setTimeout(() => { if (input) input.focus(); }, 400);
     }
 }
 
@@ -276,23 +372,33 @@ function goBack() {
     else if (top === 'pageDev') updateURL('pageDev', '');
     else if (top === 'pageSearch') updateURL('pageSearch', '');
     updateTabBar();
+    // 如果回到首页，重新启动轮播
+    if (top === 'pageHome') {
+        const featured = GAMES.filter(g => g.featured).sort((a, b) => a.featured - b.featured);
+        if (featured.length > 1) startCarousel(featured.length);
+    }
 }
 
 // ===== 公开调用函数 =====
 function openDetail(id) {
     renderDetail(id);
     pushPage('pageDetail', id);
+    clearInterval(carouselTimer); // 暂停轮播
 }
 
 function openContrib(devId) {
     renderContrib(devId);
     pushPage('pageContrib', devId);
+    clearInterval(carouselTimer);
 }
 
 function openSearch() {
     pushPage('pageSearch', '');
+    const input = document.getElementById('searchInput');
+    if (input) input.value = '';
     document.getElementById('searchResults').innerHTML = `<div class="empty-state"><div class="em-icon">🔍</div><div class="em-text">输入关键词搜索游戏或开发者</div></div>`;
-    setTimeout(() => document.getElementById('searchInput').focus(), 400);
+    setTimeout(() => { if (input) input.focus(); }, 400);
+    clearInterval(carouselTimer);
 }
 
 // ===== RENDER FUNCTIONS =====
@@ -304,9 +410,13 @@ function renderDetail(id) {
     const dlKeys = [{ key: 'web', label: '网站直达', icon: '🌐', sub: '浏览器打开' }, { key: 'pc', label: '电脑程序', icon: '💻', sub: 'Windows / Mac' }, { key: 'android', label: '安卓软件', icon: '🤖', sub: 'Android 安装包' }, { key: 'ios', label: '苹果软件', icon: '🍎', sub: 'App Store' }];
     const similar = gamesByCat(g.cat).filter(x => x.id !== g.id);
     const byDev = gamesByDev(g.devId).filter(x => x.id !== g.id);
+
+    // 生成截图HTML，使用 data-* 存储，避免内联传参
+    const shotsHtml = g.shots.map((s, i) => `<div class="dl-shot" data-shots='${JSON.stringify(g.shots)}' data-index="${i}"><img src="${s}" alt=""></div>`).join('');
+
     document.getElementById('detailScroll').innerHTML = `
     <div class="dl-info-top"><div class="dl-icon"><img src="${g.icon}" alt=""></div><div class="dl-meta"><div class="name">${g.title}</div><div class="dev">${d.name}</div><div class="stat-row"><span class="stars">★★★★★</span><span>${g.rating}</span><span>·</span><span>${g.ratings}个评分</span><span>·</span><span>${g.size}</span></div></div></div>
-    <div class="dl-sec"><div class="dl-sec-title">预览</div><div class="dl-shots">${g.shots.map((s, i) => `<div class="dl-shot" onclick="openLightbox(${JSON.stringify(g.shots).replace(/"/g, '&quot;')},${i})"><img src="${s}" alt=""></div>`).join('')}</div></div>
+    <div class="dl-sec"><div class="dl-sec-title">预览</div><div class="dl-shots">${shotsHtml}</div></div>
     <div class="dl-sec"><div class="dl-sec-title">贡献者</div><div class="contrib-list"><div class="contrib-item" onclick="openContrib('${d.id}')"><img src="${d.avatar}" alt=""><div><div class="ci-name">${d.name}</div><div class="ci-role">${d.role}</div></div></div></div></div>
     <div class="dl-sec"><div class="dl-sec-title">游戏详情</div><div class="dl-detail-grid">
       <div class="dl-detail-cell"><span class="dd-icon">${det.network ? '🌐' : '📶'}</span><span class="dd-val">${det.network ? '需要网络' : '离线可玩'}</span><span class="dd-label">网络需求</span></div>
@@ -321,11 +431,35 @@ function renderDetail(id) {
     </div></div>
     <div class="dl-sec"><div class="dl-sec-title">简介</div><div class="dl-desc collapsed" id="dDesc">${g.desc}</div><span class="dl-desc-toggle" id="dToggle" onclick="toggleDesc()">展开更多</span></div>
     <div class="dl-sec"><div class="dl-sec-title">标签</div><div class="dl-tags">${g.tags.map(t => `<span class="dl-tag">${t}</span>`).join('')}</div></div>
-    <div class="dl-sec"><div class="dl-sec-title">下载方式</div><div class="dl-downloads">${dlKeys.map(k => { const has = !!g.dl[k.key]; return `<div class="dl-btn${has ? '' : ' disabled'}" onclick="${has ? `window.open('${g.dl[k.key]}','_blank')` : `showToast('${k.label}')`}"><span class="dl-icon-sm">${k.icon}</span><span class="dl-label">${k.label}</span><span class="dl-sub">${has ? k.sub : '暂未开通'}</span></div>` }).join('')}</div></div>
+    <div class="dl-sec"><div class="dl-sec-title">下载方式</div><div class="dl-downloads">${dlKeys.map(k => {
+        // 修复：排除 javascript:void(0) 以及空值
+        const val = g.dl[k.key];
+        const has = val && val !== 'javascript:void(0)';
+        return `<div class="dl-btn${has ? '' : ' disabled'}" onclick="${has ? `window.open('${val}','_blank')` : `showToast('${k.label}')`}"><span class="dl-icon-sm">${k.icon}</span><span class="dl-label">${k.label}</span><span class="dl-sub">${has ? k.sub : '暂未开通'}</span></div>`
+    }).join('')}</div></div>
     ${byDev.length ? `<div class="dl-sec"><div class="dl-sec-title">创作者其他作品</div><div class="rec-scroll">${byDev.map(x => `<div class="rec-card" onclick="openDetail(${x.id})"><div class="rec-card-img"><img src="${x.icon}" alt=""></div><div class="rc-name">${x.title}</div><div class="rc-meta"><span class="stars">★${x.rating}</span> ${x.size}</div></div>`).join('')}</div></div>` : ''}
     ${similar.length ? `<div class="dl-sec"><div class="dl-sec-title">同类型推荐</div><div class="rec-scroll">${similar.map(x => `<div class="rec-card" onclick="openDetail(${x.id})"><div class="rec-card-img"><img src="${x.icon}" alt=""></div><div class="rc-name">${x.title}</div><div class="rc-meta"><span class="stars">★${x.rating}</span> ${x.size}</div></div>`).join('')}</div></div>` : ''}
     <div style="height:20px"></div>`;
     document.getElementById('detailScroll').scrollTop = 0;
+
+    // 绑定截图点击事件（事件委托）
+    const shotsContainer = document.querySelector('#detailScroll .dl-shots');
+    if (shotsContainer) {
+        shotsContainer.addEventListener('click', function(e) {
+            const shot = e.target.closest('.dl-shot');
+            if (!shot) return;
+            const shotsData = shot.dataset.shots;
+            const index = parseInt(shot.dataset.index);
+            if (shotsData) {
+                try {
+                    const shots = JSON.parse(shotsData);
+                    openLightbox(shots, index);
+                } catch (err) {
+                    console.warn('解析截图数据失败', err);
+                }
+            }
+        });
+    }
 }
 
 function renderContrib(devId) {
@@ -362,7 +496,8 @@ function moveCarousel(dir, count) {
     carouselIdx = (carouselIdx + dir + count) % count;
     const track = document.getElementById('cTrack');
     if (track) track.style.transform = `translateX(-${carouselIdx * 100}%)`;
-    document.querySelectorAll('#cDots i').forEach((d, i) => d.classList.toggle('on', i === carouselIdx));
+    const dots = document.querySelectorAll('#cDots i');
+    if (dots.length) dots.forEach((d, i) => d.classList.toggle('on', i === carouselIdx));
 }
 
 // ===== COLLECTIONS =====
@@ -421,7 +556,8 @@ function initDev() {
 
 // ===== SEARCH =====
 function closeSearch() {
-    document.getElementById('searchInput').value = '';
+    const input = document.getElementById('searchInput');
+    if (input) input.value = '';
     goBack();
 }
 
@@ -448,17 +584,23 @@ function openLightbox(shots, idx) {
     lbShots = shots; lbIdx = idx;
     const lb = document.getElementById('lightbox');
     if (!lb) return;
-    document.getElementById('lbImg').src = lbShots[lbIdx];
-    document.getElementById('lbCounter').textContent = (lbIdx + 1) + ' / ' + lbShots.length;
-    document.querySelector('.lightbox-prev').style.display = lbShots.length > 1 ? '' : 'none';
-    document.querySelector('.lightbox-next').style.display = lbShots.length > 1 ? '' : 'none';
-    document.getElementById('lbCounter').style.display = lbShots.length > 1 ? '' : 'none';
+    const img = document.getElementById('lbImg');
+    const counter = document.getElementById('lbCounter');
+    if (img) img.src = lbShots[lbIdx];
+    if (counter) counter.textContent = (lbIdx + 1) + ' / ' + lbShots.length;
+    const prev = document.querySelector('.lightbox-prev');
+    const next = document.querySelector('.lightbox-next');
+    if (prev) prev.style.display = lbShots.length > 1 ? '' : 'none';
+    if (next) next.style.display = lbShots.length > 1 ? '' : 'none';
+    if (counter) counter.style.display = lbShots.length > 1 ? '' : 'none';
     requestAnimationFrame(() => lb.classList.add('show'));
 }
+
 function closeLightbox() {
     const lb = document.getElementById('lightbox');
     if (lb) lb.classList.remove('show');
 }
+
 function navLightbox(dir) {
     if (lbShots.length <= 1) return;
     lbIdx = (lbIdx + dir + lbShots.length) % lbShots.length;
@@ -468,11 +610,13 @@ function navLightbox(dir) {
     img.style.transform = 'scale(0.92)';
     setTimeout(() => {
         img.src = lbShots[lbIdx];
-        document.getElementById('lbCounter').textContent = (lbIdx + 1) + ' / ' + lbShots.length;
+        const counter = document.getElementById('lbCounter');
+        if (counter) counter.textContent = (lbIdx + 1) + ' / ' + lbShots.length;
         img.style.opacity = '1';
         img.style.transform = 'scale(1)';
     }, 150);
 }
+
 (function() {
     let sx = 0;
     const lb = document.getElementById('lightbox');
