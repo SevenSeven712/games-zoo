@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
@@ -1306,5 +1306,180 @@
 
     <!-- ===== 分离的 JavaScript 文件 ===== -->
     <script src="script.js"></script>
+
+    <!-- ===== 游戏名称自动截断脚本（超过7个字打...） ===== -->
+    <script>
+    (function() {
+        'use strict';
+
+        /**
+         * 截断文本：超过 maxChars 个字符时保留前 maxChars 个并添加 "..."
+         * @param {string} text - 原始文本
+         * @param {number} maxChars - 最大字符数，默认7
+         * @returns {string} 处理后的文本
+         */
+        function truncateText(text, maxChars) {
+            maxChars = maxChars || 7;
+            if (!text || typeof text !== 'string') return text || '';
+            text = text.trim();
+            if (text.length > maxChars) {
+                return text.substring(0, maxChars) + '...';
+            }
+            return text;
+        }
+
+        /**
+         * 对单个 DOM 元素应用截断
+         * @param {Element} el - 目标元素
+         * @param {number} maxChars - 最大字符数
+         */
+        function applyTruncate(el, maxChars) {
+            if (!el) return;
+            maxChars = maxChars || 7;
+
+            // 跳过已处理的元素
+            if (el.hasAttribute('data-truncated')) return;
+
+            const original = el.textContent.trim();
+            // 保存原始文本
+            el.setAttribute('data-original', original);
+            el.setAttribute('data-truncated', 'true');
+
+            if (original.length > maxChars) {
+                el.textContent = original.substring(0, maxChars) + '...';
+                // 设置 title 属性以便鼠标悬停时显示完整名称
+                el.setAttribute('title', original);
+            }
+        }
+
+        /**
+         * 批量处理容器内的游戏名称元素
+         * 覆盖"创作者作品"和"同类型推荐"两个区域
+         * @param {Element} container - 容器元素
+         */
+        function processGameNamesInContainer(container) {
+            if (!container) return;
+
+            // 同类型推荐：.rec-card .rc-name
+            container.querySelectorAll('.rec-card .rc-name').forEach(function(el) {
+                applyTruncate(el, 7);
+            });
+
+            // 创作者作品（贡献者页面中的游戏列表）：.gl-item .gi-name
+            // 仅在贡献者页面容器内处理
+            container.querySelectorAll('.gl-item .gi-name').forEach(function(el) {
+                applyTruncate(el, 7);
+            });
+        }
+
+        /**
+         * 全局扫描并处理所有相关容器
+         */
+        function scanAll() {
+            // 详情页中的同类型推荐
+            var detailScroll = document.getElementById('detailScroll');
+            if (detailScroll) {
+                processGameNamesInContainer(detailScroll);
+            }
+
+            // 贡献者页面中的创作者作品
+            var contribScroll = document.getElementById('contribScroll');
+            if (contribScroll) {
+                processGameNamesInContainer(contribScroll);
+            }
+        }
+
+        // ===== MutationObserver：监听动态内容变化 =====
+        var observerConfig = {
+            childList: true,
+            subtree: true
+        };
+
+        // 对详情页和贡献者页面的滚动容器进行监听
+        var detailScroll = document.getElementById('detailScroll');
+        var contribScroll = document.getElementById('contribScroll');
+
+        var observer = new MutationObserver(function(mutations) {
+            var shouldScan = false;
+            mutations.forEach(function(mutation) {
+                // 检查新增节点
+                if (mutation.addedNodes.length > 0) {
+                    mutation.addedNodes.forEach(function(node) {
+                        if (node.nodeType === 1) {
+                            // 如果新增节点包含 .rc-name 或 .gi-name，触发扫描
+                            if (node.querySelectorAll) {
+                                if (node.querySelectorAll('.rc-name, .gi-name').length > 0) {
+                                    shouldScan = true;
+                                }
+                            }
+                            // 如果新增节点本身就是目标元素
+                            if (node.classList &&
+                                (node.classList.contains('rc-name') || node.classList.contains('gi-name'))) {
+                                shouldScan = true;
+                            }
+                        }
+                    });
+                }
+            });
+
+            if (shouldScan) {
+                // 使用 requestAnimationFrame 避免频繁触发
+                if (scanAll._rafId) {
+                    cancelAnimationFrame(scanAll._rafId);
+                }
+                scanAll._rafId = requestAnimationFrame(function() {
+                    scanAll();
+                    scanAll._rafId = null;
+                });
+            }
+        });
+
+        // 开始观察
+        if (detailScroll) {
+            observer.observe(detailScroll, observerConfig);
+        }
+        if (contribScroll) {
+            observer.observe(contribScroll, observerConfig);
+        }
+
+        // ===== 初始扫描（DOM 加载完成后） =====
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', function() {
+                // 延迟执行，确保 script.js 已生成初始内容
+                setTimeout(scanAll, 100);
+            });
+        } else {
+            // DOM 已就绪，延迟执行
+            setTimeout(scanAll, 100);
+        }
+
+        // ===== 暴露 API 到全局，方便 script.js 主动调用 =====
+        window.truncateGameName = function(el, maxChars) {
+            applyTruncate(el, maxChars || 7);
+        };
+
+        window.truncateText = truncateText;
+
+        window.refreshGameNameTruncation = scanAll;
+
+        // 监听页面切换（自定义事件，如果 script.js 支持的话）
+        document.addEventListener('pageChanged', function() {
+            setTimeout(scanAll, 50);
+        });
+
+        // 也监听 slide 页面的 transitionend 事件
+        document.addEventListener('transitionend', function(e) {
+            var target = e.target;
+            if (target.classList && target.classList.contains('slide') && target.classList.contains('active')) {
+                setTimeout(function() {
+                    processGameNamesInContainer(target);
+                }, 50);
+            }
+        });
+
+        console.log('[Seven游戏乐园] 游戏名称自动截断脚本已就绪（超过7个字自动打...）');
+        console.log('[Seven游戏乐园] 覆盖区域：创作者作品 + 同类型推荐');
+    })();
+    </script>
 </body>
 </html>
