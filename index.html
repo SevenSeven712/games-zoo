@@ -1,0 +1,1310 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>Seven游戏乐园</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+            user-select: none;
+            -webkit-user-select: none;
+            -webkit-touch-callout: none
+        }
+        :root {
+            --bg: #f5f3ff;
+            --card: #fff;
+            --accent: #7c3aed;
+            --accent2: #a855f7;
+            --gradient: linear-gradient(135deg, #7c3aed, #a855f7, #c084fc);
+            --green: #34C759;
+            --orange: #FF9500;
+            --red: #FF3B30;
+            --pink: #FF2D55;
+            --text: #1c1c1e;
+            --sub: #8e8e93;
+            --sep: #e9e5f5;
+            --bar: rgba(245, 243, 255, 0.92);
+            --safe-b: env(safe-area-inset-bottom, 0px);
+        }
+        html,
+        body {
+            height: 100%;
+            overflow: hidden;
+            font-family: 'Noto Sans SC', -apple-system, sans-serif;
+            background: var(--bg);
+            color: var(--text)
+        }
+        img {
+            display: block;
+            max-width: 100%
+        }
+
+        /* ===== SPLASH ===== */
+        #splash {
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            background: linear-gradient(160deg, #1a0a2e 0%, #2d1b69 40%, #7c3aed 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: opacity .5s, transform .5s
+        }
+        #splash.hide {
+            opacity: 0;
+            transform: scale(1.05);
+            pointer-events: none
+        }
+        .splash-glow {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(168, 85, 247, 0.4), transparent 70%);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation: glowPulse 2.5s ease-in-out infinite
+        }
+        @keyframes glowPulse {
+            0%,
+            100% {
+                transform: translate(-50%, -50%) scale(0.8);
+                opacity: .5
+            }
+            50% {
+                transform: translate(-50%, -50%) scale(1.1);
+                opacity: 1
+            }
+        }
+        .splash-icon {
+            width: 100px;
+            height: 100px;
+            border-radius: 24px;
+            background: linear-gradient(135deg, #7c3aed, #c084fc);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 48px;
+            font-weight: 900;
+            color: #fff;
+            box-shadow: 0 20px 60px rgba(124, 58, 237, 0.5);
+            position: relative;
+            z-index: 1;
+            animation: iconPop .6s cubic-bezier(.17, .89, .32, 1.28) .3s both
+        }
+        .splash-icon::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 24px;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.25), transparent 50%)
+        }
+        @keyframes iconPop {
+            from {
+                opacity: 0;
+                transform: scale(0.5)
+            }
+            to {
+                opacity: 1;
+                transform: scale(1)
+            }
+        }
+        .splash-name {
+            font-size: 26px;
+            font-weight: 900;
+            color: #fff;
+            margin-top: 24px;
+            letter-spacing: 1px;
+            animation: fadeUp .5s ease .5s both;
+            position: relative;
+            z-index: 1
+        }
+        .splash-name span {
+            color: rgba(255, 255, 255, 0.5);
+            font-weight: 400
+        }
+        .splash-desc {
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.5);
+            margin-top: 8px;
+            animation: fadeUp .5s ease .65s both;
+            position: relative;
+            z-index: 1
+        }
+        .splash-dots {
+            display: flex;
+            gap: 6px;
+            margin-top: 40px;
+            animation: fadeUp .5s ease .8s both;
+            position: relative;
+            z-index: 1
+        }
+        .splash-dots i {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            animation: dotBounce 1.2s ease-in-out infinite
+        }
+        .splash-dots i:nth-child(2) {
+            animation-delay: .15s
+        }
+        .splash-dots i:nth-child(3) {
+            animation-delay: .3s
+        }
+        @keyframes dotBounce {
+            0%,
+            80%,
+            100% {
+                background: rgba(255, 255, 255, 0.2);
+                transform: scale(1)
+            }
+            40% {
+                background: rgba(255, 255, 255, 0.8);
+                transform: scale(1.3)
+            }
+        }
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(12px)
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0)
+            }
+        }
+
+        /* ===== LAYOUT ===== */
+        #app {
+            position: fixed;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            opacity: 0;
+            transition: opacity .4s;
+            overflow: hidden
+        }
+        #app.show {
+            opacity: 1
+        }
+
+        .content-area {
+            flex: 1;
+            position: relative;
+            overflow: hidden
+        }
+
+        /* PAGE: shared base */
+        .page {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            background: var(--bg);
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity .25s ease;
+            z-index: 1
+        }
+        .page.active {
+            opacity: 1;
+            pointer-events: auto;
+            z-index: 10
+        }
+        /* slide pages: detail / contrib / search */
+        .page.slide {
+            transform: translateX(100%);
+            transition: transform .35s cubic-bezier(.32, .08, .24, 1), opacity 0s;
+            opacity: 1;
+            pointer-events: none;
+            z-index: 20
+        }
+        .page.slide.active {
+            transform: translateX(0);
+            pointer-events: auto;
+            z-index: 20
+        }
+
+        /* ===== HEADER ===== */
+        .hdr {
+            flex-shrink: 0;
+            background: var(--bar);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: .5px solid var(--sep);
+            z-index: 4
+        }
+        .hdr-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 16px
+        }
+        .hdr-title {
+            font-size: 28px;
+            font-weight: 900;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text
+        }
+        .hdr-back {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            background: none;
+            border: none;
+            color: var(--accent);
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            font-family: inherit;
+            padding: 4px 0
+        }
+        .hdr-back svg {
+            width: 20px;
+            height: 20px
+        }
+        .hdr-center {
+            font-size: 17px;
+            font-weight: 700
+        }
+        .hdr-right {
+            width: 44px
+        }
+
+        .search-bar {
+            margin: 0 16px 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(124, 58, 237, 0.06);
+            border-radius: 10px;
+            padding: 9px 12px;
+            cursor: pointer
+        }
+        .search-bar svg {
+            flex-shrink: 0;
+            color: var(--accent);
+            opacity: .6
+        }
+        .search-bar span {
+            font-size: 14px;
+            color: var(--sub)
+        }
+
+        .search-input-wrap {
+            margin: 0 16px 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(124, 58, 237, 0.06);
+            border-radius: 10px;
+            padding: 9px 12px
+        }
+        .search-input-wrap svg {
+            flex-shrink: 0;
+            color: var(--accent);
+            opacity: .6
+        }
+        .search-input-wrap input {
+            flex: 1;
+            border: none;
+            outline: none;
+            background: none;
+            font-size: 14px;
+            font-family: inherit;
+            color: var(--text)
+        }
+        .search-input-wrap input::placeholder {
+            color: var(--sub)
+        }
+        .search-cancel {
+            font-size: 14px;
+            color: var(--accent);
+            font-weight: 500;
+            white-space: nowrap;
+            cursor: pointer
+        }
+
+        /* ===== TAB BAR ===== */
+        .tab-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            height: calc(52px + var(--safe-b));
+            padding-bottom: var(--safe-b);
+            background: var(--bar);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-top: .5px solid var(--sep);
+            flex-shrink: 0;
+            z-index: 50;
+            position: relative
+        }
+        .tab-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2px;
+            font-size: 10px;
+            color: var(--sub);
+            cursor: pointer;
+            padding: 4px 20px;
+            transition: color .2s
+        }
+        .tab-item.active {
+            color: var(--accent)
+        }
+        .tab-item svg {
+            width: 24px;
+            height: 24px
+        }
+
+        /* ===== SCROLL ===== */
+        .scroll {
+            flex: 1;
+            overflow-y: auto;
+            overflow-x: hidden;
+            -webkit-overflow-scrolling: touch;
+            min-height: 0
+        }
+        .scroll-pad {
+            padding-bottom: 20px
+        }
+
+        /* ===== CAROUSEL ===== */
+        .carousel {
+            position: relative;
+            margin: 12px 16px;
+            border-radius: 16px;
+            overflow: hidden;
+            height: 170px
+        }
+        .carousel-track {
+            display: flex;
+            transition: transform .45s cubic-bezier(.32, .08, .24, 1);
+            height: 100%;
+            cursor: pointer
+        }
+        .carousel-slide {
+            flex: 0 0 100%;
+            height: 100%;
+            position: relative
+        }
+        .carousel-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover
+        }
+        .carousel-slide .c-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 16px;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.65));
+            color: #fff
+        }
+        .carousel-slide .c-tag {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 6px;
+            font-size: 10px;
+            font-weight: 700;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(6px);
+            margin-bottom: 4px
+        }
+        .carousel-slide .c-title {
+            font-size: 18px;
+            font-weight: 700
+        }
+        .carousel-slide .c-desc {
+            font-size: 12px;
+            opacity: .7;
+            margin-top: 2px
+        }
+        .carousel-dots {
+            position: absolute;
+            bottom: 10px;
+            right: 14px;
+            display: flex;
+            gap: 5px;
+            z-index: 5
+        }
+        .carousel-dots i {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.35);
+            transition: all .3s
+        }
+        .carousel-dots i.on {
+            width: 18px;
+            border-radius: 3px;
+            background: #fff
+        }
+
+        /* ===== COLLECTION ===== */
+        .collection {
+            margin: 8px 16px
+        }
+        .collection-head {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 10px
+        }
+        .collection-head h3 {
+            font-size: 16px;
+            font-weight: 700
+        }
+        .collection-head a {
+            font-size: 13px;
+            color: var(--accent);
+            cursor: pointer
+        }
+        .collection-scroll {
+            display: flex;
+            gap: 10px;
+            overflow-x: auto;
+            scrollbar-width: none;
+            padding-bottom: 2px
+        }
+        .collection-scroll::-webkit-scrollbar {
+            display: none
+        }
+        .collection-card {
+            flex: 0 0 110px;
+            cursor: pointer;
+            transition: transform .15s
+        }
+        .collection-card:active {
+            transform: scale(0.96)
+        }
+        .collection-card-img {
+            width: 110px;
+            height: 110px;
+            border-radius: 14px;
+            overflow: hidden;
+            margin-bottom: 6px;
+            position: relative
+        }
+        .collection-card-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover
+        }
+        .collection-card .cc-name {
+            font-size: 13px;
+            font-weight: 600;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis
+        }
+        .collection-card .cc-meta {
+            font-size: 11px;
+            color: var(--sub);
+            margin-top: 2px;
+            display: flex;
+            align-items: center;
+            gap: 4px
+        }
+        .collection-card .stars {
+            color: var(--orange);
+            font-size: 10px
+        }
+        .sec-title {
+            font-size: 16px;
+            font-weight: 700;
+            margin: 20px 16px 12px
+        }
+
+        /* ===== CAT TAGS ===== */
+        .cat-tags {
+            display: flex;
+            gap: 8px;
+            overflow-x: auto;
+            padding: 0 16px 12px;
+            scrollbar-width: none;
+            flex-shrink: 0
+        }
+        .cat-tags::-webkit-scrollbar {
+            display: none
+        }
+        .cat-tag {
+            flex-shrink: 0;
+            padding: 6px 16px;
+            border-radius: 16px;
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--sub);
+            background: rgba(124, 58, 237, 0.06);
+            border: none;
+            cursor: pointer;
+            transition: all .2s;
+            font-family: inherit
+        }
+        .cat-tag.active {
+            background: var(--gradient);
+            color: #fff;
+            box-shadow: 0 2px 12px rgba(124, 58, 237, 0.3)
+        }
+        .cat-tag:active {
+            transform: scale(0.95)
+        }
+
+        /* ===== GAME LIST ===== */
+        .game-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            padding: 0 16px 16px
+        }
+        .gl-item {
+            display: flex;
+            gap: 12px;
+            padding: 12px;
+            background: var(--card);
+            border-radius: 14px;
+            cursor: pointer;
+            transition: transform .15s;
+            box-shadow: 0 1px 4px rgba(124, 58, 237, 0.06)
+        }
+        .gl-item:active {
+            transform: scale(0.98)
+        }
+        .gl-icon {
+            width: 72px;
+            height: 72px;
+            border-radius: 16px;
+            flex-shrink: 0;
+            overflow: hidden
+        }
+        .gl-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover
+        }
+        .gl-info {
+            flex: 1;
+            min-width: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center
+        }
+        .gl-info .gi-name {
+            font-size: 15px;
+            font-weight: 600;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis
+        }
+        .gl-info .gi-dev {
+            font-size: 11px;
+            color: var(--sub);
+            margin-top: 2px
+        }
+        .gl-info .gi-meta {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            margin-top: 4px
+        }
+        .gi-meta .stars {
+            color: var(--orange);
+            font-size: 11px
+        }
+        .gi-meta .rating,
+        .gi-meta .size {
+            font-size: 11px;
+            color: var(--sub)
+        }
+        .gi-meta .size {
+            margin-left: auto
+        }
+        .gl-btn {
+            align-self: center;
+            flex-shrink: 0;
+            padding: 6px 14px;
+            border-radius: 14px;
+            background: var(--gradient);
+            color: #fff;
+            font-size: 12px;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            font-family: inherit;
+            transition: transform .15s;
+            box-shadow: 0 2px 8px rgba(124, 58, 237, 0.25)
+        }
+        .gl-btn:active {
+            transform: scale(0.92)
+        }
+
+        /* ===== DEV PAGE ===== */
+        .dev-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            padding: 0 16px 16px
+        }
+        .dev-card {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 14px 16px;
+            background: var(--card);
+            border-radius: 16px;
+            cursor: pointer;
+            transition: transform .15s;
+            box-shadow: 0 1px 4px rgba(124, 58, 237, 0.06)
+        }
+        .dev-card:active {
+            transform: scale(0.98)
+        }
+        .dev-ava {
+            width: 52px;
+            height: 52px;
+            border-radius: 50%;
+            flex-shrink: 0;
+            object-fit: cover;
+            border: 2px solid rgba(124, 58, 237, 0.15)
+        }
+        .dev-card-info {
+            flex: 1;
+            min-width: 0
+        }
+        .dev-card-info .d-name {
+            font-size: 15px;
+            font-weight: 700
+        }
+        .dev-card-info .d-role {
+            font-size: 12px;
+            color: var(--sub);
+            margin-top: 1px
+        }
+        .dev-card-info .d-games {
+            font-size: 11px;
+            color: var(--accent);
+            margin-top: 3px
+        }
+        .dev-card .dev-arrow {
+            color: var(--sub);
+            font-size: 18px
+        }
+
+        /* ===== DETAIL PAGE ===== */
+        .dl-info-top {
+            display: flex;
+            gap: 14px;
+            padding: 20px 16px 16px;
+            background: linear-gradient(180deg, rgba(124, 58, 237, 0.06), transparent)
+        }
+        .dl-icon {
+            width: 80px;
+            height: 80px;
+            border-radius: 20px;
+            flex-shrink: 0;
+            overflow: hidden;
+            box-shadow: 0 4px 16px rgba(124, 58, 237, 0.15);
+            position: relative
+        }
+        .dl-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover
+        }
+        .dl-icon::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 20px;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), transparent)
+        }
+        .dl-meta {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center
+        }
+        .dl-meta .name {
+            font-size: 22px;
+            font-weight: 700
+        }
+        .dl-meta .dev {
+            font-size: 12px;
+            color: var(--sub);
+            margin-top: 2px
+        }
+        .dl-meta .stat-row {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 6px;
+            flex-wrap: wrap
+        }
+        .stat-row .stars {
+            color: var(--orange);
+            font-size: 13px
+        }
+        .stat-row span {
+            font-size: 12px;
+            color: var(--sub)
+        }
+        .dl-sec {
+            padding: 16px 16px 0
+        }
+        .dl-sec-title {
+            font-size: 13px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text
+        }
+        .dl-shots {
+            display: flex;
+            gap: 10px;
+            overflow-x: auto;
+            padding-bottom: 4px;
+            scrollbar-width: none
+        }
+        .dl-shots::-webkit-scrollbar {
+            display: none
+        }
+        .dl-shot {
+            flex: 0 0 130px;
+            height: 240px;
+            border-radius: 14px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+            cursor: pointer;
+            transition: transform .15s
+        }
+        .dl-shot:active {
+            transform: scale(0.97)
+        }
+        .dl-shot img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover
+        }
+        .dl-detail-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 8px
+        }
+        .dl-detail-cell {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            padding: 12px 4px;
+            background: rgba(124, 58, 237, 0.04);
+            border-radius: 12px;
+            text-align: center
+        }
+        .dl-detail-cell .dd-icon {
+            font-size: 20px
+        }
+        .dl-detail-cell .dd-label {
+            font-size: 10px;
+            color: var(--sub)
+        }
+        .dl-detail-cell .dd-val {
+            font-size: 13px;
+            font-weight: 600
+        }
+        .dl-desc {
+            font-size: 14px;
+            color: #444;
+            line-height: 1.8
+        }
+        .dl-desc.collapsed {
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden
+        }
+        .dl-desc-toggle {
+            display: inline-block;
+            margin-top: 6px;
+            font-size: 13px;
+            color: var(--accent);
+            font-weight: 500;
+            cursor: pointer
+        }
+        .dl-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px
+        }
+        .dl-tag {
+            padding: 5px 14px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 500;
+            background: rgba(124, 58, 237, 0.08);
+            color: var(--accent)
+        }
+        .dl-downloads {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px
+        }
+        .dl-btn {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            padding: 14px 8px;
+            border-radius: 14px;
+            border: 1.5px solid var(--sep);
+            background: var(--card);
+            cursor: pointer;
+            transition: all .15s;
+            font-family: inherit
+        }
+        .dl-btn:active {
+            transform: scale(0.96)
+        }
+        .dl-btn.disabled {
+            opacity: 0.4;
+            cursor: not-allowed
+        }
+        .dl-btn .dl-icon-sm {
+            font-size: 24px
+        }
+        .dl-btn .dl-label {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text)
+        }
+        .dl-btn .dl-sub {
+            font-size: 10px;
+            color: var(--sub)
+        }
+        .dl-btn:not(.disabled) {
+            border-color: var(--accent);
+            background: rgba(124, 58, 237, 0.04)
+        }
+        .dl-btn:not(.disabled) .dl-label {
+            color: var(--accent)
+        }
+        .contrib-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px
+        }
+        .contrib-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 14px 8px 8px;
+            background: rgba(124, 58, 237, 0.04);
+            border-radius: 14px;
+            cursor: pointer;
+            transition: transform .15s
+        }
+        .contrib-item:active {
+            transform: scale(0.97)
+        }
+        .contrib-item img {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid rgba(124, 58, 237, 0.12)
+        }
+        .contrib-item .ci-name {
+            font-size: 13px;
+            font-weight: 600
+        }
+        .contrib-item .ci-role {
+            font-size: 10px;
+            color: var(--sub)
+        }
+        .rec-scroll {
+            display: flex;
+            gap: 10px;
+            overflow-x: auto;
+            padding-bottom: 4px;
+            scrollbar-width: none
+        }
+        .rec-scroll::-webkit-scrollbar {
+            display: none
+        }
+        .rec-card {
+            flex: 0 0 110px;
+            cursor: pointer;
+            transition: transform .15s
+        }
+        .rec-card:active {
+            transform: scale(0.96)
+        }
+        .rec-card-img {
+            width: 110px;
+            height: 110px;
+            border-radius: 14px;
+            overflow: hidden;
+            margin-bottom: 6px
+        }
+        .rec-card-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover
+        }
+        .rec-card .rc-name {
+            font-size: 13px;
+            font-weight: 600;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis
+        }
+        .rec-card .rc-meta {
+            font-size: 11px;
+            color: var(--sub);
+            margin-top: 2px
+        }
+
+        /* ===== CONTRIBUTOR PROFILE ===== */
+        .cp-header {
+            padding: 30px 16px 24px;
+            text-align: center;
+            background: linear-gradient(180deg, rgba(124, 58, 237, 0.1), transparent)
+        }
+        .cp-ava {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid rgba(124, 58, 237, 0.2);
+            margin: 0 auto 12px;
+            box-shadow: 0 4px 20px rgba(124, 58, 237, 0.15)
+        }
+        .cp-name {
+            font-size: 22px;
+            font-weight: 900
+        }
+        .cp-role {
+            font-size: 13px;
+            color: var(--sub);
+            margin-top: 2px
+        }
+        .cp-bio {
+            font-size: 13px;
+            color: #555;
+            margin-top: 8px;
+            line-height: 1.6;
+            max-width: 300px;
+            margin-left: auto;
+            margin-right: auto
+        }
+        .cp-stat {
+            display: flex;
+            justify-content: center;
+            gap: 28px;
+            margin-top: 16px
+        }
+        .cp-stat-item {
+            text-align: center
+        }
+        .cp-stat-item .num {
+            font-size: 20px;
+            font-weight: 900;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text
+        }
+        .cp-stat-item .lbl {
+            font-size: 11px;
+            color: var(--sub);
+            margin-top: 2px
+        }
+        .cp-label {
+            font-size: 14px;
+            font-weight: 700;
+            margin: 20px 16px 12px;
+            color: var(--text)
+        }
+
+        /* ===== LIGHTBOX ===== */
+        .lightbox {
+            position: fixed;
+            inset: 0;
+            z-index: 9500;
+            background: rgba(0, 0, 0, 0.95);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity .3s
+        }
+        .lightbox.show {
+            opacity: 1;
+            pointer-events: auto
+        }
+        .lightbox-img {
+            max-width: 92vw;
+            max-height: 88vh;
+            object-fit: contain;
+            border-radius: 8px;
+            transform: scale(0.85);
+            transition: transform .35s cubic-bezier(.17, .89, .32, 1.28)
+        }
+        .lightbox.show .lightbox-img {
+            transform: scale(1)
+        }
+        .lightbox-close {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(12px);
+            border: none;
+            color: #fff;
+            font-size: 18px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center
+        }
+        .lightbox-close:active {
+            background: rgba(255, 255, 255, 0.3)
+        }
+        .lightbox-counter {
+            position: absolute;
+            bottom: 28px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 13px;
+            font-weight: 500;
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(12px);
+            padding: 6px 16px;
+            border-radius: 20px
+        }
+        .lightbox-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(12px);
+            border: none;
+            color: #fff;
+            font-size: 20px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center
+        }
+        .lightbox-nav:active {
+            background: rgba(255, 255, 255, 0.25)
+        }
+        .lightbox-prev {
+            left: 12px
+        }
+        .lightbox-next {
+            right: 12px
+        }
+        .lightbox-img {
+            transition: opacity .15s ease, transform .15s ease
+        }
+
+        .toast {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0.8);
+            background: rgba(124, 58, 237, 0.88);
+            backdrop-filter: blur(20px);
+            color: #fff;
+            padding: 14px 24px;
+            border-radius: 14px;
+            font-size: 14px;
+            font-weight: 500;
+            pointer-events: none;
+            opacity: 0;
+            transition: all .25s;
+            z-index: 9000;
+            text-align: center;
+            max-width: 240px
+        }
+        .toast.show {
+            opacity: 1;
+            transform: translate(-50%, -50%) scale(1)
+        }
+        .toast-icon {
+            font-size: 28px;
+            display: block;
+            margin-bottom: 6px
+        }
+        .empty-state {
+            text-align: center;
+            padding: 60px 16px;
+            color: var(--sub)
+        }
+        .empty-state .em-icon {
+            font-size: 48px;
+            margin-bottom: 12px
+        }
+        .empty-state .em-text {
+            font-size: 15px
+        }
+    </style>
+</head>
+<body>
+
+    <div id="splash">
+        <div class="splash-glow"></div>
+        <div class="splash-icon">S</div>
+        <div class="splash-name">Seven<span>游戏乐园</span></div>
+        <div class="splash-desc">发现好游戏，畅享每一刻</div>
+        <div class="splash-dots"><i></i><i></i><i></i></div>
+    </div>
+
+    <div id="app">
+        <div class="content-area">
+            <!-- HOME -->
+            <div class="page active" id="pageHome">
+                <div class="hdr">
+                    <div class="hdr-inner"><div class="hdr-title">Seven游戏乐园</div></div>
+                    <div class="search-bar" onclick="openSearch()"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg><span>搜索游戏或开发者</span></div>
+                </div>
+                <div class="scroll scroll-pad" id="homeScroll">
+                    <div style="height:4px"></div>
+                    <div class="carousel" id="carousel"></div>
+                    <div class="sec-title">热门精选</div>
+                    <div class="collection" id="hotCol"></div>
+                    <div class="sec-title">角色扮演</div>
+                    <div class="collection" id="rpgCol"></div>
+                    <div class="sec-title">休闲益智</div>
+                    <div class="collection" id="casualCol"></div>
+                    <div class="sec-title">动作冒险</div>
+                    <div class="collection" id="actionCol"></div>
+                    <div style="height:16px"></div>
+                </div>
+            </div>
+
+            <!-- CATEGORY -->
+            <div class="page" id="pageCategory">
+                <div class="hdr">
+                    <div class="hdr-inner"><div class="hdr-title">分类</div></div>
+                    <div class="search-bar" onclick="openSearch()"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg><span>搜索游戏或开发者</span></div>
+                </div>
+                <div class="cat-tags" id="catTags"></div>
+                <div class="scroll scroll-pad" id="catScroll">
+                    <div class="game-list" id="catGameList"></div>
+                </div>
+            </div>
+
+            <!-- DEVELOPER -->
+            <div class="page" id="pageDev">
+                <div class="hdr">
+                    <div class="hdr-inner"><div class="hdr-title">开发者</div></div>
+                </div>
+                <div class="scroll scroll-pad" id="devScroll">
+                    <div class="sec-title" style="margin-bottom:8px">全部贡献者</div>
+                    <div class="dev-grid" id="devGrid"></div>
+                </div>
+            </div>
+
+            <!-- DETAIL (slide) -->
+            <div class="page slide" id="pageDetail">
+                <div class="hdr">
+                    <div class="hdr-inner">
+                        <button class="hdr-back" onclick="goBack()"><svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M15 19l-7-7 7-7"/></svg>返回</button>
+                        <span class="hdr-center" id="dTitle"></span>
+                        <div class="hdr-right"></div>
+                    </div>
+                </div>
+                <div class="scroll" id="detailScroll"></div>
+            </div>
+
+            <!-- CONTRIBUTOR PROFILE (slide) -->
+            <div class="page slide" id="pageContrib">
+                <div class="hdr">
+                    <div class="hdr-inner">
+                        <button class="hdr-back" onclick="goBack()"><svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M15 19l-7-7 7-7"/></svg>返回</button>
+                        <span class="hdr-center" id="cpTitle"></span>
+                        <div class="hdr-right"></div>
+                    </div>
+                </div>
+                <div class="scroll scroll-pad" id="contribScroll"></div>
+            </div>
+
+            <!-- SEARCH (slide) -->
+            <div class="page slide" id="pageSearch">
+                <div class="hdr">
+                    <div class="hdr-inner">
+                        <div class="search-input-wrap" style="flex:1;margin:0">
+                            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+                            <input type="text" id="searchInput" placeholder="搜索游戏、应用或开发者" oninput="doSearch(this.value)">
+                            <span class="search-cancel" onclick="closeSearch()">取消</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="scroll scroll-pad" id="searchScroll">
+                    <div id="searchResults" style="padding:16px"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB BAR (always at bottom) -->
+        <div class="tab-bar" id="tabBar">
+            <div class="tab-item active" data-t="home">
+                <svg fill="currentColor" viewBox="0 0 24 24"><path d="M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z"/></svg>
+                <span>首页</span>
+            </div>
+            <div class="tab-item" data-t="category">
+                <svg fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+                <span>分类</span>
+            </div>
+            <div class="tab-item" data-t="dev">
+                <svg fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+                <span>开发者</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- LIGHTBOX -->
+    <div class="lightbox" id="lightbox">
+        <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+        <button class="lightbox-nav lightbox-prev" onclick="navLightbox(-1)">‹</button>
+        <img class="lightbox-img" id="lbImg" src="" alt="">
+        <button class="lightbox-nav lightbox-next" onclick="navLightbox(1)">›</button>
+        <div class="lightbox-counter" id="lbCounter"></div>
+    </div>
+
+    <div class="toast" id="toast"><span class="toast-icon">📦</span><span id="toastText"></span></div>
+
+    <!-- ===== 分离的 JavaScript 文件 ===== -->
+    <script src="script.js"></script>
+</body>
+</html>
